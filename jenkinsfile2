@@ -2,11 +2,14 @@ pipeline{
     agent any
     parameters{
     string defaultValue: 'SIT', description: 'Give Env Name', name: 'Env', trim: true
+    choice choices: ['PPE', 'DD', 'Proman'], description: 'Select one Account', name: 'Account'
     }
     stages{
         stage('Param demo'){
             steps{
-                echo "this stage will be executed first from master node in Environment: ${params.Env} "}
+                echo "this stage will be executed first from master node in Environment: ${params.Env} "
+                echo "Test will be run in ${params.Account} "
+                }
         }
     }
 }
