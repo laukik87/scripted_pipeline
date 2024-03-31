@@ -6,8 +6,6 @@ pipeline{
     stages{
         stage('Param demo'){
             steps{
-                echo "this stage will be executed first from master node in Environment: $Env "
-                echo "this stage will be executed first from master node in Environment: ${Env} "
                 echo "this stage will be executed first from master node in Environment: ${params.Env} "}
         }
     }
