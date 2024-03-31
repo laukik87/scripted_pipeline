@@ -1,0 +1,21 @@
+pipeline{
+    agent any
+    parameters{
+    string defaultValue: 'SIT', description: 'Give Env Name', name: 'Env', trim: true
+    }
+    stages{
+        stage('non-parallel Stage'){
+            steps{echo 'this stage will be executed first from master node in Environment: $Env '}
+        }
+        stage('Run tests'){
+            parallel{
+                stage('Test on windows Node'){
+                    steps{echo 'Task1 on agent1 in Environment: $Env'}
+                }
+                stage('Test on Master '){
+                    steps{echo 'task2 on master in Environment: $Env'}
+                }
+            }
+        }
+    }
+}
