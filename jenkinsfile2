@@ -5,7 +5,15 @@ pipeline{
     choice choices: ['PPE', 'DD', 'Proman'], description: 'Select one Account', name: 'Account'
     }
     stages{
-        stage('Param demo'){
+        stage('Param demo-SIT'){
+         when { ${params.Env} 'SIT' }
+            steps{
+                echo "this stage will be executed first from master node in Environment: ${params.Env} "
+                echo "Test will be run in ${params.Account} "
+                }
+        }
+        stage('Param demo-DEV'){
+         when { ${params.Env} 'Dev' }
             steps{
                 echo "this stage will be executed first from master node in Environment: ${params.Env} "
                 echo "Test will be run in ${params.Account} "
